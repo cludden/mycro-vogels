@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../restify-microservice-vogels/.idea/restify-microservice-dynamodb.iml" filepath="$PROJECT_DIR$/../restify-microservice-vogels/.idea/restify-microservice-dynamodb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/restify-microservice-dynamodb.iml" filepath="$PROJECT_DIR$/.idea/restify-microservice-dynamodb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/restify-microservice-vogels.iml" filepath="$PROJECT_DIR$/.idea/restify-microservice-vogels.iml" />
     </modules>
   </component>
 </project>
