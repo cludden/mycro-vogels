@@ -1,7 +1,7 @@
 {
-  "name": "restify-microservice-dynamodb",
+  "name": "restify-microservice-vogels",
   "version": "1.0.0",
-  "description": "restify-microservice adapter for dynamodb",
+  "description": "restify-microservice adapter for vogels (dynamodb)",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/index.js"
@@ -10,12 +10,12 @@
     "restify-microservice",
     "restify",
     "microservice",
-    "dynamodb"
+    "dynamodb",
+    "vogels"
   ],
   "author": "benjamin schnelle <benjamin.schnelle@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.2.26",
     "vogels": "^2.2.0"
   },
   "devDependencies": {
