@@ -66,3 +66,25 @@ module.exports = {
     }
 };
 ```
+
+## Testing
+run the tests
+```
+npm test
+```
+
+run coverage
+```
+grunt coverage
+```
+
+## Contributing
+1. [Fork it](https://github.com/cludden/mycro-vogels/fork)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+## License
+Copyright (c) 2015 Ben Schnelle & Chris Ludden.
+Licensed under the [MIT license](LICENSE.md).
