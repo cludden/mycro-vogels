@@ -1,12 +1,13 @@
 {
-  "name": "restify-microservice-vogels",
+  "name": "mycro-vogels",
   "version": "1.0.0",
   "description": "restify-microservice adapter for vogels (dynamodb)",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/index.js"
+    "test": "mocha test/tests/bootstrap.test.js test/tests/**/*.test.js --recursive"
   },
   "keywords": [
+    "mycro",
     "restify-microservice",
     "restify",
     "microservice",
@@ -16,11 +17,18 @@
   "author": "benjamin schnelle <benjamin.schnelle@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "vogels": "^2.2.0"
+    "lodash": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "grunt": "^0.4.5",
+    "grunt-mocha-istanbul": "^3.0.1",
+    "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
-    "sinon": "^1.17.2"
+    "mycro": "^0.2.1",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0",
+    "supertest": "^1.1.0",
+    "vogels": "^2.2.0"
   }
 }
