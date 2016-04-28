@@ -15,9 +15,8 @@ module.exports = {
     registerConnection(config, cb) {
         let _config = _.merge({}, {
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-            region: config.region
-        });
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        }, _.omit(config, 'driver'));
 
         if (config.driver) {
             vogels.dynamoDriver(config.driver);
