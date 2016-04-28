@@ -1,8 +1,8 @@
 'use strict';
 
-var vogels = require('vogels'),
-    joi = require('joi'),
-    _ = require('lodash');
+var vogels = require('vogels');
+var joi = require('joi');
+var _ = require('lodash');
 
 module.exports = {
     /**
@@ -13,19 +13,24 @@ module.exports = {
      * @param  {Function} cb
      */
     registerConnection(config, cb) {
-        // for dev, otherwise IAM roles should be used
-        if(process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
-            config.accessKeyId = process.env.AWS_ACCESS_KEY_ID;
-            config.secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+        let _config = _.merge({}, {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            region: config.region
+        });
+
+        if (config.driver) {
+            vogels.dynamoDriver(config.driver);
+        } else {
+            if (!_config.region) {
+                return process.nextTick(function() {
+                    cb(new Error('missing required connection property: region'));
+                });
+            }
+            // configure vogels and return
+            vogels.AWS.config.update(config);
         }
 
-        // ensure that `region` is defined
-        if(!config.region) {
-            return cb(new Error('missing required connection property: region'));
-        }
-
-        // configure vogels and return
-        vogels.AWS.config.update(config);
         cb(null, vogels);
     },
 
@@ -37,7 +42,7 @@ module.exports = {
      * @param  {Function} factory
      * @param  {Function} cb
      */
-    registerModel: function(vogels, factory, name, cb) {
+    registerModel: function(vogels, factory, name, mycro, cb) {
         if (!_.isFunction(factory)) {
             return cb(new Error(`Invalid model definition provided for
                 model '${name}'. Model modules should export a factory
@@ -46,7 +51,7 @@ module.exports = {
             ));
         }
         try {
-            let model = factory(vogels, joi, name);
+            let model = factory(vogels, joi, name, mycro);
             return cb(null, model);
         } catch (e) {
             cb(e);
