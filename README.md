@@ -13,11 +13,11 @@ npm install --save vogels mycro-vogels
 ```javascript
 // in config/connections.js
 
-var adapter = require('mycro-vogels');
+const vogelsAdapter = require('mycro-vogels');
 
 module.exports = {
     vogels: {
-        adapter: adapter,
+        adapter: vogelsAdapter,
         config: {
             region: 'us-west-2'
         }
@@ -30,7 +30,7 @@ module.exports = {
 // in app/models/post.js
 
 module.exports = function(vogels, joi, name, mycro) { // name = 'post'
-    let model = vogels.define(name, {
+    const model = vogels.define(name, {
         hashKey: 'email',
         rangeKey: 'title',
         tableName: 'blogPosts',
@@ -54,15 +54,6 @@ module.exports = function(mycro) {
     const Posts = mycro.models.post;
 
     return {
-        /**
-         * Create a new post
-         * @param  {Object} req - the request object
-         * @param  {Object} req.body - request body
-         * @param  {String} req.body.email
-         * @param  {String} req.body.title
-         * @param  {String} req.body.content
-         * @param  {Object} res - the response object
-         */
         create(req, res) {
             Posts.create({
                 email: req.body.email,
@@ -82,9 +73,10 @@ module.exports = function(mycro) {
 ## Configuration
 All items (except for a 'driver' attribute) in the config object will be passed to vogels as is:
 ```javascript
+// in config/connections.js
 const AWS = require('aws-sdk');
 const vogelsAdapter = require('mycro-vogels');
-// in config/connections.js
+
 module.exports = {
     // ..
     dynamo: {
@@ -127,5 +119,5 @@ grunt coverage
 5. Create new Pull Request
 
 ## License
-Copyright (c) 2016 Ben Schnelle & Chris Ludden.
+Copyright (c) 201 Ben Schnelle & Chris Ludden.
 Licensed under the [MIT license](LICENSE.md).
